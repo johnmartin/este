@@ -1,52 +1,52 @@
-import './Loading.scss';
-import Helmet from 'react-helmet';
-import React, { PureComponent } from 'react';
-import { FormattedMessage, defineMessages } from 'react-intl';
+import './Loading.scss'
+import Helmet from 'react-helmet'
+import React, { PureComponent } from 'react'
+import { FormattedMessage, defineMessages } from 'react-intl'
 
 const messages = defineMessages({
   loadingText: {
     defaultMessage: 'Loading',
-    id: 'loading.loadingText',
+    id: 'loading.loadingText'
   },
   longLoadingText: {
     defaultMessage: 'Still loading, please check your connection',
-    id: 'loading.longLoadingText',
-  },
-});
+    id: 'loading.longLoadingText'
+  }
+})
 
 export default class Loading extends PureComponent {
 
-  constructor() {
-    super();
+  constructor () {
+    super()
     this.state = {
-      currentText: null,
-    };
+      currentText: null
+    }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     // www.nngroup.com/articles/response-times-3-important-limits
     this.timer = setTimeout(() => {
-      this.setState({ currentText: messages.loadingText });
-    }, 1000);
+      this.setState({ currentText: messages.loadingText })
+    }, 1000)
     this.longTimer = setTimeout(() => {
-      this.setState({ currentText: messages.longLoadingText });
-    }, 10000);
+      this.setState({ currentText: messages.longLoadingText })
+    }, 10000)
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-    clearTimeout(this.longTimer);
+  componentWillUnmount () {
+    clearTimeout(this.timer)
+    clearTimeout(this.longTimer)
   }
 
-  render() {
-    const { currentText } = this.state;
+  render () {
+    const { currentText } = this.state
     if (!currentText) {
       return (
-        <div className="este-loading">{String.fromCharCode(160)}</div>
-      );
+        <div className='site-loading'>{String.fromCharCode(160)}</div>
+      )
     }
     return (
-      <div className="este-loading">
+      <div className='site-loading'>
         <FormattedMessage {...currentText}>
           {message =>
             <Helmet title={message} />
@@ -54,7 +54,7 @@ export default class Loading extends PureComponent {
         </FormattedMessage>
         <FormattedMessage {...currentText} />
       </div>
-    );
+    )
   }
 
 }

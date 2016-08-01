@@ -1,22 +1,22 @@
-import gutil from 'gulp-util';
-import makeWebpackConfig from './makeConfig';
-import webpack from 'webpack';
+import gutil from 'gulp-util'
+import makeWebpackConfig from './makeConfig'
+import webpack from 'webpack'
 
-export default function build(done) {
-  const config = makeWebpackConfig({ isDevelopment: false });
+export default function build (done) {
+  const config = makeWebpackConfig({ isDevelopment: false })
   webpack(config, (fatalError, stats) => {
-    const jsonStats = stats.toJson();
+    const jsonStats = stats.toJson()
 
     // We can save jsonStats to be analyzed with
     // github.com/robertknight/webpack-bundle-size-analyzer.
     // $ webpack-bundle-size-analyzer ./bundle-stats.json
-    // const fs = require('fs');
-    // fs.writeFileSync('./bundle-stats.json', JSON.stringify(jsonStats));
+    // const fs = require('fs')
+    // fs.writeFileSync('./bundle-stats.json', JSON.stringify(jsonStats))
 
-    const buildError = fatalError || jsonStats.errors[0] || jsonStats.warnings[0];
+    const buildError = fatalError || jsonStats.errors[0] || jsonStats.warnings[0]
 
     if (buildError) {
-      throw new gutil.PluginError('webpack', buildError);
+      throw new gutil.PluginError('webpack', buildError)
     }
 
     gutil.log('[webpack]', stats.toString({
@@ -25,9 +25,9 @@ export default function build(done) {
       hash: false,
       timings: false,
       chunks: false,
-      chunkModules: false,
-    }));
+      chunkModules: false
+    }))
 
-    done();
-  });
+    done()
+  })
 }

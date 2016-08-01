@@ -1,9 +1,7 @@
-import FieldError from './FieldError.react';
-import Loading from './Loading.react';
-import fxbml from './fxbml';
+import FieldError from './FieldError.react'
+import Loading from './Loading.react'
 
 export {
   FieldError,
-  Loading,
-  fxbml,
-};
+  Loading
+}

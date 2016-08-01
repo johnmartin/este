@@ -1,7 +1,7 @@
-import Helmet from 'react-helmet';
-import React, { PureComponent } from 'react';
-import linksMessages from '../../common/app/linksMessages';
-import { FormattedHTMLMessage, FormattedMessage, defineMessages } from 'react-intl';
+import Helmet from 'react-helmet'
+import React, { PureComponent } from 'react'
+import linksMessages from '../../common/app/linksMessages'
+import { FormattedHTMLMessage, FormattedMessage, defineMessages } from 'react-intl'
 
 const messages = defineMessages({
   intro: {
@@ -11,15 +11,15 @@ const messages = defineMessages({
         <a target="_blank" href="https://github.com/este/este">Este</a> dev stack.
       </p>
     `,
-    id: 'home.intro',
-  },
-});
+    id: 'home.intro'
+  }
+})
 
 export default class HomePage extends PureComponent {
 
-  render() {
+  render () {
     return (
-      <div className="home-page">
+      <div className='home-page'>
         <FormattedMessage {...linksMessages.home}>
           {message =>
             <Helmet title={message} />
@@ -27,9 +27,9 @@ export default class HomePage extends PureComponent {
         </FormattedMessage>
         <FormattedHTMLMessage {...messages.intro} />
         {/* Use require for assets. It's super useful for CDN. */}
-        <img alt="50x50 placeholder" src={require('./50x50.png')} />
+        <img alt='50x50 placeholder' src={require('./50x50.png')} />
       </div>
-    );
+    )
   }
 
 }

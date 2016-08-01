@@ -1,8 +1,6 @@
-import 'regenerator-runtime/runtime';
-import gulp from 'gulp';
-import requireDir from 'require-dir';
+import gulp from 'gulp'
+import requireDir from 'require-dir'
+import 'regenerator-runtime/runtime'
 
-requireDir('./gulp', { recurse: false });
-
-// Default task to start development. Just type `gulp`.
-gulp.task('default', ['server']);
+requireDir('./gulp', { recurse: false })
+gulp.task('default', ['server'])

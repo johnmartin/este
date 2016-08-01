@@ -1,24 +1,25 @@
 /* eslint-disable no-console */
-import fs from 'fs';
-import gulp from 'gulp';
-import { diff, messagesToCode } from './support/messages';
+import fs from 'fs'
+import gulp from 'gulp'
+
+import { diff, messagesToCode } from './support/messages'
 
 gulp.task('messages-clear', ['messages-extract'], () => {
-  const loadMessages = require('../src/server/intl/loadMessages');
-  const messages = loadMessages({ includeDefault: true });
-  const defaultMessagesKeys = Object.keys(messages._default);
+  const loadMessages = require('../src/server/intl/loadMessages')
+  const messages = loadMessages({ includeDefault: true })
+  const defaultMessagesKeys = Object.keys(messages._default)
 
   Object.keys(messages)
     .filter(locale => locale !== '_default')
     .forEach(locale => {
-      const localeMessagesKeys = Object.keys(messages[locale]);
-      const unusedMessagesKeys = diff(localeMessagesKeys, defaultMessagesKeys);
+      const localeMessagesKeys = Object.keys(messages[locale])
+      const unusedMessagesKeys = diff(localeMessagesKeys, defaultMessagesKeys)
       const clearedMessages = require(`../messages/${locale}`)
         .default
-        .filter(translation => unusedMessagesKeys.indexOf(translation.id) === -1);
-      const code = messagesToCode(clearedMessages);
-      console.log(locale);
-      unusedMessagesKeys.forEach(messageKey => console.log(`  ${messageKey}`));
-      fs.writeFile(`messages/${locale}.js`, code);
-    });
-});
+        .filter(translation => unusedMessagesKeys.indexOf(translation.id) === -1)
+      const code = messagesToCode(clearedMessages)
+      console.log(locale)
+      unusedMessagesKeys.forEach(messageKey => console.log(`  ${messageKey}`))
+      fs.writeFile(`messages/${locale}.js`, code)
+    })
+})

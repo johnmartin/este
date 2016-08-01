@@ -1,42 +1,42 @@
-import Helmet from 'react-helmet';
-import Locales from './Locales.react';
-import React, { PureComponent } from 'react';
-import linksMessages from '../../common/app/linksMessages';
+import Helmet from 'react-helmet'
+import Locales from './Locales.react'
+import React, { PureComponent } from 'react'
+import linksMessages from '../../common/app/linksMessages'
 import {
   FormattedDate,
   FormattedMessage,
   FormattedNumber,
   FormattedRelative,
-  defineMessages,
-} from 'react-intl';
+  defineMessages
+} from 'react-intl'
 
 const messages = defineMessages({
   h2: {
     defaultMessage: 'react-intl demonstration',
-    id: 'intl.page.h2',
+    id: 'intl.page.h2'
   },
   unreadCount: {
     defaultMessage: `{unreadCount, plural,
       one {message}
       other {messages}
     }`,
-    id: 'intl.page.unreadCount',
-  },
-});
+    id: 'intl.page.unreadCount'
+  }
+})
 
 export default class IntlPage extends PureComponent {
 
-  constructor() {
-    super();
-    this.componentRenderedAt = Date.now();
+  constructor () {
+    super()
+    this.componentRenderedAt = Date.now()
   }
 
-  render() {
+  render () {
     // To remember beloved −123 min. https://www.youtube.com/watch?v=VKOv1I8zKso
-    const unreadCount = 123;
+    const unreadCount = 123
 
     return (
-      <div className="intl-page">
+      <div className='intl-page'>
         <FormattedMessage {...linksMessages.intl}>
           {message =>
             <Helmet title={message} />
@@ -49,10 +49,10 @@ export default class IntlPage extends PureComponent {
         <p>
           <FormattedDate
             value={Date.now()}
-            day="numeric"
-            month="long"
-            year="numeric"
-            formatMatcher="basic" // while this bug remains in react-intl: https://github.com/andyearnshaw/Intl.js/issues/179
+            day='numeric'
+            month='long'
+            year='numeric'
+            formatMatcher='basic' // while this bug remains in react-intl: https://github.com/andyearnshaw/Intl.js/issues/179
           />
         </p>
         <p>
@@ -67,7 +67,7 @@ export default class IntlPage extends PureComponent {
           />
         </p>
       </div>
-    );
+    )
   }
 
 }

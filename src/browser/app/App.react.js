@@ -1,66 +1,65 @@
-import './App.scss';
-import Footer from './Footer.react';
-import Header from './Header.react';
-import Helmet from 'react-helmet';
-import React, { PropTypes, PureComponent } from 'react';
-import favicon from '../../common/app/favicon';
-import start from '../../common/app/start';
-import { connect } from 'react-redux';
-import { locationShape } from 'react-router';
+import './App.scss'
+import Footer from './Footer.react'
+import Header from './Header.react'
+import Helmet from 'react-helmet'
+import React, { PropTypes, PureComponent } from 'react'
+import favicon from '../../common/app/favicon'
+import start from '../../common/app/start'
+import { connect } from 'react-redux'
+import { locationShape } from 'react-router'
 
-// v4-alpha.getbootstrap.com/getting-started/introduction/#starter-template
-const bootstrap4Metas = [
+const defaultMetas = [
   { charset: 'utf-8' },
   {
     name: 'viewport',
-    content: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+    content: 'width=device-width, initial-scale=1, shrink-to-fit=no'
   },
   {
     'http-equiv': 'x-ua-compatible',
-    content: 'ie=edge',
-  },
-];
+    content: 'ie=edge'
+  }
+]
 
-class App extends PureComponent {
+class AppInternal extends PureComponent {
 
   static propTypes = {
     children: PropTypes.object.isRequired,
     currentLocale: PropTypes.string.isRequired,
-    location: locationShape,
-  };
+    location: locationShape
+  }
 
-  render() {
-    const { children, currentLocale, location } = this.props;
+  render () {
+    const { children, currentLocale, location } = this.props
 
     return (
-      <div className="container">
+      <div className='container'>
         <Helmet
           htmlAttributes={{ lang: currentLocale }}
-          titleTemplate="%s - Este.js"
+          titleTemplate='%s'
           meta={[
-            ...bootstrap4Metas,
+            ...defaultMetas,
             {
               name: 'description',
-              content: 'Dev stack and starter kit for functional and universal React apps',
+              content: 'Dev stack and starter kit for functional and universal React apps'
             },
-            ...favicon.meta,
+            ...favicon.meta
           ]}
           link={[
-            ...favicon.link,
+            ...favicon.link
           ]}
         />
         {/* Pass location to ensure header active links are updated. */}
         <Header location={location} />
-        {children}
+          {children}
         <Footer />
       </div>
-    );
+    )
   }
 
 }
 
-App = start(App);
+const App = start(AppInternal)
 
 export default connect(state => ({
-  currentLocale: state.intl.currentLocale,
-}))(App);
+  currentLocale: state.intl.currentLocale
+}))(App)

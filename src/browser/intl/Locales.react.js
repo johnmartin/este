@@ -1,20 +1,20 @@
-import React, { PropTypes, PureComponent } from 'react';
-import { connect } from 'react-redux';
-import { setCurrentLocale } from '../../common/intl/actions';
+import React, { PropTypes, PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { setCurrentLocale } from '../../common/intl/actions'
 
 class Locales extends PureComponent {
 
   static propTypes = {
     currentLocale: PropTypes.string.isRequired,
     locales: PropTypes.arrayOf(React.PropTypes.string),
-    setCurrentLocale: PropTypes.func.isRequired,
-  };
+    setCurrentLocale: PropTypes.func.isRequired
+  }
 
-  render() {
-    const { currentLocale, locales, setCurrentLocale } = this.props;
+  render () {
+    const { currentLocale, locales, setCurrentLocale } = this.props
 
     return (
-      <div className="locales">
+      <div className='locales'>
         {locales.map(locale =>
           <button
             disabled={locale === currentLocale}
@@ -23,12 +23,12 @@ class Locales extends PureComponent {
           >{locale}</button>
         )}
       </div>
-    );
+    )
   }
 
 }
 
 export default connect(state => ({
   currentLocale: state.intl.currentLocale,
-  locales: state.intl.locales,
-}), { setCurrentLocale })(Locales);
+  locales: state.intl.locales
+}), { setCurrentLocale })(Locales)

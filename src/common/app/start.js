@@ -1,27 +1,28 @@
-import * as actions from './actions';
-import React, { PropTypes, PureComponent } from 'react';
-import { IntlProvider } from 'react-intl';
-import { connect } from 'react-redux';
+import * as actions from './actions'
+import React, { PropTypes, PureComponent } from 'react'
+import { IntlProvider } from 'react-intl'
+import { connect } from 'react-redux'
 
-export default function start(WrappedComponent) {
-  class Start extends PureComponent {
+export default function start (WrappedComponent) {
+
+  class StartInternal extends PureComponent {
 
     static propTypes = {
       intl: PropTypes.object.isRequired,
-      start: PropTypes.func.isRequired,
-    };
+      start: PropTypes.func.isRequired
+    }
 
-    componentDidMount() {
-      const { start } = this.props;
+    componentDidMount () {
+      const { start } = this.props
       // Client side changes must be dispatched on componentDidMount, aka
       // after the first app render, to match client and server HTML. Otherwise,
       // React attempt to reuse markup will fail.
-      start();
+      start()
     }
 
-    render() {
-      const { intl } = this.props;
-      const { currentLocale, defaultLocale, initialNow, messages } = intl;
+    render () {
+      const { intl } = this.props
+      const { currentLocale, defaultLocale, initialNow, messages } = intl
 
       return (
         <IntlProvider
@@ -33,14 +34,14 @@ export default function start(WrappedComponent) {
         >
           <WrappedComponent {...this.props} />
         </IntlProvider>
-      );
+      )
     }
 
   }
 
-  Start = connect(state => ({
-    intl: state.intl,
-  }), actions)(Start);
+  const Start = connect(state => ({
+    intl: state.intl
+  }), actions)(StartInternal)
 
-  return Start;
+  return Start
 }

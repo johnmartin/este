@@ -3,41 +3,41 @@
 //  https://gist.github.com/steida/04a39dfa1043e1451044ba8370743b0c
 //  https://gist.github.com/steida/b19a1858e38007651a616ae44244ca52
 
-import React, { PureComponent } from 'react';
-import ReactDOM from 'react-dom';
+import React, { PureComponent } from 'react'
+import ReactDOM from 'react-dom'
 
-export default function xfbml(WrappedComponent) {
+export default function xfbml (WrappedComponent) {
   return class Wrapper extends PureComponent {
 
-    parseXfbmlAsap(el) {
+    parseXfbmlAsap (el) {
       if (window.FB) {
-        window.FB.XFBML.parse(el);
-        return;
+        window.FB.XFBML.parse(el)
+        return
       }
-      const fbAsyncInit = window.fbAsyncInit;
+      const fbAsyncInit = window.fbAsyncInit
       // Aspect Oriented Programming ftw.
       window.fbAsyncInit = () => {
-        fbAsyncInit();
-        if (!this._isMounted) return;
-        window.FB.XFBML.parse(el);
-      };
+        fbAsyncInit()
+        if (!this._isMounted) return
+        window.FB.XFBML.parse(el)
+      }
     }
 
-    componentDidMount() {
-      this._isMounted = true;
-      const el = ReactDOM.findDOMNode(this);
-      this.parseXfbmlAsap(el);
+    componentDidMount () {
+      this._isMounted = true
+      const el = ReactDOM.findDOMNode(this)
+      this.parseXfbmlAsap(el)
     }
 
-    componentWillUnmount() {
-      this._isMounted = false;
+    componentWillUnmount () {
+      this._isMounted = false
     }
 
-    render() {
+    render () {
       return (
         <WrappedComponent {...this.props} />
-      );
+      )
     }
 
-  };
+  }
 }

@@ -1,4 +1,5 @@
-import gulp from 'gulp';
-import runEslint from './support/run-eslint.js';
+import gulp from 'gulp'
 
-gulp.task('eslint', () => runEslint());
+import runEslint from './support/run-eslint.js'
+
+gulp.task('eslint', () => runEslint())

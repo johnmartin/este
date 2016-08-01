@@ -1,32 +1,32 @@
-import Helmet from 'react-helmet';
-import React, { PureComponent } from 'react';
-import { FormattedMessage, defineMessages } from 'react-intl';
-import { Link } from 'react-router';
+import Helmet from 'react-helmet'
+import React, { PureComponent } from 'react'
+import { FormattedMessage, defineMessages } from 'react-intl'
+import { Link } from 'react-router'
 
 const messages = defineMessages({
   title: {
     defaultMessage: 'Page Not Found',
-    id: 'notFound.title',
+    id: 'notFound.title'
   },
   h1: {
     defaultMessage: 'This page isn\'t available',
-    id: 'notFound.h1',
+    id: 'notFound.h1'
   },
   p: {
     defaultMessage: 'The link may be broken, or the page may have been removed.',
-    id: 'notFound.p',
+    id: 'notFound.p'
   },
   continue: {
     defaultMessage: 'Continue here please.',
-    id: 'notFound.continue',
-  },
-});
+    id: 'notFound.continue'
+  }
+})
 
 export default class NotFoundPage extends PureComponent {
 
-  render() {
+  render () {
     return (
-      <div className="notfound-page">
+      <div className='notfound-page'>
         <FormattedMessage {...messages.title}>
           {message =>
             <Helmet title={message} />
@@ -38,11 +38,11 @@ export default class NotFoundPage extends PureComponent {
         <p>
           <FormattedMessage {...messages.p} />
         </p>
-        <Link to="/">
+        <Link to='/'>
           <FormattedMessage {...messages.continue} />
         </Link>
       </div>
-    );
+    )
   }
 
 }

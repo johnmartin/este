@@ -1,12 +1,10 @@
-import { Record } from '../transit';
+import { Record } from '../transit'
 
 const InitialState = Record({
   appName: '',
-  appVersion: '',
-  firebase: '',
-  sentryUrl: '',
-}, 'config');
+  appVersion: ''
+}, 'config')
 
-export default function configReducer(state = new InitialState) {
-  return state;
+export default function configReducer (state = new InitialState) {
+  return state
 }
